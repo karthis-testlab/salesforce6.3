@@ -24,6 +24,7 @@ public class DriverInstance  {
 		switch (browser) {
 		case "chrome":
 			ChromeOptions options = new ChromeOptions();
+			options.setHeadless(headless);
 			options.addArguments("--start-maximized"); 
 			options.addArguments("--disable-notifications"); 
 			options.addArguments("--incognito");
