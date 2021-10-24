@@ -420,10 +420,10 @@ public class SeleniumBase extends Reporter implements Browser, Element  {
 	public boolean verifyExactText(WebElement ele, String expectedText) {
 		try {
 			String text = ele.getText();
-			if (text.contains(expectedText)) {
+			if (text.equalsIgnoreCase(expectedText)) {
 				return true;
 			} else {
-				reportStep("The expected text " + text + "doesn't equals to the  " + expectedText, "warning");
+				reportStep("The expected text '" + text + "' doesn't equals to the '" + expectedText + "'", "warning");
 			}
 		} catch (WebDriverException e) {
 			reportStep("Unknown exception occured while verifying the Text \n" + e.getMessage(), "fail");

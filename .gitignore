@@ -3,5 +3,5 @@
 .settings/
 target/
 test-output/
-
-
+reports
+sequential.xml

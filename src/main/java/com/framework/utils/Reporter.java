@@ -112,7 +112,7 @@ public abstract class Reporter extends DriverInstance {
 	public synchronized void endResult() {
 		try {
 			if (getDriver() != null) {
-				getDriver().quit();
+//				getDriver().quit(); //commented by Sathya on 23OCT21
 			}
 		} catch (UnreachableBrowserException e) {
 		}
