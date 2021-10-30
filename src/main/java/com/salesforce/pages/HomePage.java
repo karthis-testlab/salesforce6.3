@@ -8,10 +8,10 @@ import com.framework.testng.api.base.ProjectSpecificMethods;
 
 public class HomePage extends ProjectSpecificMethods{
 	
-	public HomePage verifyHomePage() {
+	public MobilePublisherPage verifyHomePage() {
 		verifyDisplayed(locateElement(Locators.XPATH, "//span[text()='Home']"));
 		reportStep("Homepage is loaded", "pass");
-		return this;
+		return new MobilePublisherPage();
 	}
 	
 	/*
