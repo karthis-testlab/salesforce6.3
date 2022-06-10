@@ -3,11 +3,4 @@
 .settings/
 target/
 test-output/
-<<<<<<< HEAD
 reports/
-
-
-=======
-reports
-sequential.xml
->>>>>>> 0b6418c53f14e64a7b5e4a6bab2b859584bcc6a9
