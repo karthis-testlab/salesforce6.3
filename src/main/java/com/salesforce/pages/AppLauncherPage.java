@@ -2,7 +2,7 @@ package com.salesforce.pages;
 
 import org.openqa.selenium.WebDriver;
 
-public class LoginPage {
-	
+public class AppLauncherPage {
+
 
 }
