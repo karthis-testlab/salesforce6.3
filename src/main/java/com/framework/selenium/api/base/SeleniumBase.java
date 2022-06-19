@@ -299,6 +299,7 @@ public class SeleniumBase extends Reporter implements Browser, Element  {
 			getWait().until(ExpectedConditions.visibilityOf(ele));
 			ele.clear();
 			ele.sendKeys("", "", data);
+			reportStep(data+" entered succesfully ", "pass");
 		} catch (ElementNotInteractableException e) {
 			reportStep("The Element " + ele + " is not Interactable \n" + e.getMessage(), "fail");
 		} catch (WebDriverException e) { // retry - 1
