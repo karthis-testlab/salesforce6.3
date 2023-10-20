@@ -13,10 +13,9 @@ import org.testng.annotations.BeforeSuite;
 import com.aventstack.extentreports.ExtentReports;
 import com.aventstack.extentreports.ExtentTest;
 import com.aventstack.extentreports.MediaEntityBuilder;
-import com.aventstack.extentreports.MediaEntityModelProvider;
 import com.aventstack.extentreports.Status;
-import com.aventstack.extentreports.reporter.ExtentHtmlReporter;
-import com.aventstack.extentreports.reporter.configuration.ChartLocation;
+import com.aventstack.extentreports.model.Media;
+import com.aventstack.extentreports.reporter.ExtentSparkReporter;
 import com.aventstack.extentreports.reporter.configuration.Theme;
 import com.framework.selenium.api.base.DriverInstance;
 
@@ -42,14 +41,11 @@ public abstract class Reporter extends DriverInstance {
 		if (!folder.exists()) {
 			folder.mkdir();
 		}
-		ExtentHtmlReporter htmlReporter = new ExtentHtmlReporter("./" + folderName + "/" + fileName);
-		htmlReporter.config().setTestViewChartLocation(ChartLocation.BOTTOM);
-		htmlReporter.config().setChartVisibilityOnOpen(!true);
+		ExtentSparkReporter htmlReporter = new ExtentSparkReporter("./" + folderName + "/" + fileName);		
 		htmlReporter.config().setTheme(Theme.STANDARD);
 		htmlReporter.config().setDocumentTitle("Salesforce");
 		htmlReporter.config().setEncoding("utf-8");
 		htmlReporter.config().setReportName("Salesforce");
-		htmlReporter.setAppendExisting(true);
 		extent = new ExtentReports();
 		extent.attachReporter(htmlReporter);
 	}
@@ -74,7 +70,7 @@ public abstract class Reporter extends DriverInstance {
 		synchronized (test) {
 
 			// Start reporting the step and snapshot
-			MediaEntityModelProvider img = null;
+			Media img = null;
 			if (bSnap && !(status.equalsIgnoreCase("INFO") || status.equalsIgnoreCase("skipped")
 					)) {
 				long snapNumber = 100000L;
@@ -83,7 +79,7 @@ public abstract class Reporter extends DriverInstance {
 					img = MediaEntityBuilder
 							.createScreenCaptureFromPath("./../../" + folderName + "/images/" + snapNumber + ".jpg")
 							.build();
-				} catch (IOException e) {
+				} catch (Exception e) {
 				}
 			}
 			if (status.equalsIgnoreCase("pass")) {

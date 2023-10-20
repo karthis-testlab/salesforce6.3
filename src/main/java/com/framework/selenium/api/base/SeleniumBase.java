@@ -8,6 +8,7 @@ import java.io.File;
 import java.io.FileInputStream;
 import java.io.FileNotFoundException;
 import java.io.IOException;
+import java.time.Duration;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Properties;
@@ -36,9 +37,6 @@ import com.framework.selenium.api.design.Browser;
 import com.framework.selenium.api.design.Element;
 import com.framework.selenium.api.design.Locators;
 import com.framework.utils.Reporter;
-
-import io.github.bonigarcia.wdm.WebDriverManager;
-
 
 public class SeleniumBase extends Reporter implements Browser, Element  {
 	protected Actions act;
@@ -96,7 +94,7 @@ public class SeleniumBase extends Reporter implements Browser, Element  {
 			e.printStackTrace();
 		}
 		try {
-			WebDriverWait wait = new WebDriverWait(getDriver(), 20);
+			WebDriverWait wait = new WebDriverWait(getDriver(), Duration.ofSeconds(30));
 			wait.until(ExpectedConditions.visibilityOf(element));
 		} catch (Exception e) {
 			reportStep("Element did not appear after 20 seconds", "fail", false);
@@ -559,24 +557,17 @@ public class SeleniumBase extends Reporter implements Browser, Element  {
 	@Override
 	public void startApp(String browser, boolean headless, String url) {
 		try {
-			if (browser.equalsIgnoreCase("chrome")) {
-				System.setProperty("webdriver.chrome.silentOutput", "true");
-			//	System.setProperty("webdriver.chrome.driver", "./drivers/chromedriver.exe");
-				WebDriverManager.chromedriver().setup();
+			if (browser.equalsIgnoreCase("chrome")) {			
 				setDriver("chrome", headless);
-			} else if (browser.equalsIgnoreCase("firefox")) {
-				//System.setProperty("webdriver.gecko.driver", "./drivers/geckodriver.exe");
-				WebDriverManager.firefoxdriver().setup();
+			} else if (browser.equalsIgnoreCase("firefox")) {				
 				setDriver("firefox", headless);
-			} else if (browser.equalsIgnoreCase("ie")) {
-				//System.setProperty("webdriver.ie.driver", "./drivers/IEDriverServer.exe");
-				 WebDriverManager.iedriver().setup();
+			} else if (browser.equalsIgnoreCase("edge")) {				
 				setDriver("ie",false);
 			}
 			setWait();
 			getDriver().manage().window().maximize();
-			getDriver().manage().timeouts().implicitlyWait(90, TimeUnit.SECONDS);
-			getDriver().manage().timeouts().pageLoadTimeout(20, TimeUnit.SECONDS);
+			getDriver().manage().timeouts().implicitlyWait(Duration.ofSeconds(90));
+			getDriver().manage().timeouts().pageLoadTimeout(Duration.ofSeconds(20));
 			getDriver().get(url);
 		} catch (WebDriverException e) {
 			e.printStackTrace();
@@ -624,7 +615,7 @@ public class SeleniumBase extends Reporter implements Browser, Element  {
 	@Override
 	public WebElement locateElement(String value) {
 		try {
-			WebElement findElementById = getDriver().findElementById(value);
+			WebElement findElementById = getDriver().findElement(By.id(value));
 			return findElementById;
 		} catch (NoSuchElementException e) {
 			reportStep("The Element with locator id Not Found with value: " + value + "\n" + e.getMessage(), "fail");
@@ -890,7 +881,7 @@ public class SeleniumBase extends Reporter implements Browser, Element  {
 		}
 
 		try {
-			WebDriverWait wait = new WebDriverWait(getDriver(), 10);
+			WebDriverWait wait = new WebDriverWait(getDriver(), Duration.ofSeconds(20));
 			wait.until(ExpectedConditions.invisibilityOf(element));
 		} catch (Exception e) {
 			reportStep("Element did not appear after 10 seconds", "fail", false);
