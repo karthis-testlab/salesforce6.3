@@ -9,11 +9,12 @@ import com.salesforce.pages.LoginPage;
 public class TC001_VerifyLogin extends ProjectSpecificMethods {
 	
 	@BeforeTest
-	public void beforeTest() {
+	public void beforeTest() {	
 		testcaseName = "VerifyLogin";
 		testDescription = "Verify Login functionality with positive data";
 		authors = "Karthikeyan";
 		category = "Smoke";
+		excelFileName = "";
 	}
 	
 	@Test
