@@ -3,9 +3,9 @@ package com.salesforce.pages;
 import com.framework.selenium.api.design.Locators;
 import com.framework.testng.api.base.ProjectSpecificMethods;
 
-public class LoginPage extends ProjectSpecificMethods {	
+public class LoginPage extends ProjectSpecificMethods {
 	
-	public LoginPage enterUsername(String username) {
+	public LoginPage enterUsername(String username) {		
 		type(locateElement(Locators.ID,"user-name"), username);
 		return this;
 	}
