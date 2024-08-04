@@ -21,8 +21,8 @@ import com.framework.selenium.api.base.DriverInstance;
 public abstract class Reporter extends DriverInstance {
 
 	private static ExtentReports extent;
-	private static final ThreadLocal<ExtentTest> parentTest = new ThreadLocal<ExtentTest>();
-	private static final ThreadLocal<ExtentTest> test = new ThreadLocal<ExtentTest>();
+	private static final ThreadLocal<ExtentTest> parentTest = new ThreadLocal<ExtentTest>(); //testSutie
+	private static final ThreadLocal<ExtentTest> test = new ThreadLocal<ExtentTest>();//testCase
 	private static final ThreadLocal<String> testName = new ThreadLocal<String>();
 	
 	private String fileName = "result.html";
@@ -58,7 +58,7 @@ public abstract class Reporter extends DriverInstance {
 		testName.set(testcaseName);
 	}
 
-	public synchronized void setNode() {
+	public synchronized void setNode() {		
 		ExtentTest child = parentTest.get().createNode(getTestName());
 		test.set(child);
 	}

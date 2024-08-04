@@ -1,7 +1,5 @@
 package com.framework.selenium.api.design;
 
-import java.io.FileNotFoundException;
-
 import org.openqa.selenium.InvalidElementStateException;
 import org.openqa.selenium.NoSuchElementException;
 import org.openqa.selenium.StaleElementReferenceException;
@@ -188,10 +186,4 @@ public interface Element {
 	 */
 	 boolean verifySelected(WebElement ele);
 	 
-	 String getPropertiesData(String filename, String key);
-	
 }
-
-
-
-

@@ -1,17 +1,15 @@
 package com.framework.selenium.api.base;
 
 import java.awt.Robot;
+
 import java.awt.Toolkit;
 import java.awt.datatransfer.StringSelection;
 import java.awt.event.KeyEvent;
 import java.io.File;
-import java.io.FileInputStream;
-import java.io.FileNotFoundException;
 import java.io.IOException;
 import java.time.Duration;
 import java.util.ArrayList;
 import java.util.List;
-import java.util.Properties;
 import java.util.Set;
 import java.util.concurrent.TimeUnit;
 
@@ -39,11 +37,8 @@ import com.framework.selenium.api.design.Locators;
 import com.framework.utils.Reporter;
 
 public class SeleniumBase extends Reporter implements Browser, Element  {
+	
 	protected Actions act;
-
-	public static String projectId;
-	public static String auctionRef;
-	public static Properties properties;
 	
 	protected String getAttribute(WebElement ele, String attributeValue) {
 		String val = "";
@@ -545,7 +540,7 @@ public class SeleniumBase extends Reporter implements Browser, Element  {
 			setWait();
 			act = new Actions(getDriver());
 			getDriver().manage().window().maximize();
-			getDriver().manage().timeouts().implicitlyWait(90, TimeUnit.SECONDS);
+			getDriver().manage().timeouts().implicitlyWait(Duration.ofSeconds(90));
 			getDriver().get(url);
 			reportStep("The Browser Launched in chrome browser with URL " + url, "pass");
 		} catch (Exception e) {
@@ -562,7 +557,7 @@ public class SeleniumBase extends Reporter implements Browser, Element  {
 			} else if (browser.equalsIgnoreCase("firefox")) {				
 				setDriver("firefox", headless);
 			} else if (browser.equalsIgnoreCase("edge")) {				
-				setDriver("ie",false);
+				setDriver("edge",false);
 			}
 			setWait();
 			getDriver().manage().window().maximize();
@@ -973,36 +968,5 @@ public class SeleniumBase extends Reporter implements Browser, Element  {
 	public void executeTheScript(String js, WebElement ele) {
 		getDriver().executeScript(js, ele);
 	}
-	
-	public static void generateProjectAndAuctionIds() {
-		int ranNum1 = (int) (Math.random() * 10000);
-		int ranNum2 = ranNum1+9999;
-		projectId = Integer.toString(ranNum1);
-		auctionRef = Integer.toString(ranNum2);
-	}
-
-	@Override
-	public String getPropertiesData(String filename, String key) {
-		String value = null;
-		try {
-			FileInputStream file = new FileInputStream("./src/main/resources/"+filename+".properties");
-			properties = new Properties();
-			try {
-				properties.load(file);
-				value = properties.getProperty(key);
-				
-			} catch (IOException e) {
-				
-				System.err.println("File not found");
-			}
-			
-		
-		}
-		catch(FileNotFoundException e) {
-			System.out.println("File not found");
-		}
-		return value;
-	}
-
 	
 }
