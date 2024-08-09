@@ -11,7 +11,6 @@ import java.time.Duration;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Set;
-import java.util.concurrent.TimeUnit;
 
 import org.apache.commons.io.FileUtils;
 import org.openqa.selenium.Alert;
@@ -225,7 +224,7 @@ public class SeleniumBase extends Reporter implements Browser, Element  {
 	}
 
 	public void clickWithNoSnap(WebElement ele) {
-		String text = ele.getText();
+		// String text = ele.getText();
 		try {
 			getWait().until(ExpectedConditions.elementToBeClickable(ele));
 			ele.click();
