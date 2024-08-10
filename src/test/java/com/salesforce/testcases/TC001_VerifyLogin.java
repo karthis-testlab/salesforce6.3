@@ -14,16 +14,16 @@ public class TC001_VerifyLogin extends ProjectSpecificMethods {
 		testDescription = "Verify Login functionality with positive data";
 		authors = "Karthikeyan";
 		category = "Smoke";
-		excelFileName = "";
 	}
 	
 	@Test
 	public void runLogin() {
-		new LoginPage()
-		.enterUsername("standard_user")
-		.enterPassword("secret_sauce")
-		.clickLoginBtn()
-		.validateInventoryPageUrl();
-	}
+//		new LoginPage()
+//		.enterUsername("standard_user")
+//		.enterPassword("secret_sauce")
+//		.clickLoginBtn()
+//		.validateInventoryPageUrl();
+		
+		new LoginPage().enterUserName().enterPassword().clickLoginButtonAndLoginIsSuccess();
 
-}
+}}
