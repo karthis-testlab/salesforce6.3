@@ -27,6 +27,7 @@ public class DriverInstance  {
 		case "chrome":
 			ChromeOptions options = new ChromeOptions();
 			if(headless) { options.addArguments("--headless=new"); }
+			options.addArguments("--disable-search-engine-choice-screen");
 			options.addArguments("--start-maximized"); 
 			options.addArguments("--disable-notifications"); 
 			options.addArguments("--incognito");
