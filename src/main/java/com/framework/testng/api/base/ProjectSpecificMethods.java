@@ -19,11 +19,11 @@ public class ProjectSpecificMethods extends SeleniumBase {
 	
 	@BeforeMethod
 	public void preCondition() {
-<<<<<<< HEAD
+
 		startApp("chrome", false, "https://login.salesforce.com/");
-=======
+
 		startApp("chrome", false, readConfigProperty("url"));
->>>>>>> 65b62416ff0b315f2ea49624386a68eed05a31c3
+
 		setNode();
 	}
 	
