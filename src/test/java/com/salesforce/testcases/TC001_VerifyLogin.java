@@ -4,26 +4,29 @@ import org.testng.annotations.BeforeTest;
 import org.testng.annotations.Test;
 
 import com.framework.testng.api.base.ProjectSpecificMethods;
+import com.framework.utils.PropertyHandler;
 import com.salesforce.pages.LoginPage;
 
 public class TC001_VerifyLogin extends ProjectSpecificMethods {	
 	
 	@BeforeTest
 	public void beforeTest() {	
-		testcaseName = "VerifyLogin";
-		testDescription = "Verify Login functionality with positive data";
-		authors = "Karthikeyan";
+		testcaseName = "Create an Opportunity";
+		testDescription = "Create a new opportuinity";
+		authors = "Selvi";
 		category = "Smoke";
-		excelFileName = "";
+		//excelFileName = "";
 	}
 	
 	@Test
 	public void runLogin() {
 		new LoginPage()
-		.enterUsername("standard_user")
-		.enterPassword("secret_sauce")
-		.clickLoginBtn()
-		.validateInventoryPageUrl();
+		//.enterUsername("bootcamp_2024@testleaf.com")
+		//.enterPassword("Bootcamp@123")
+		.enterUsername(PropertyHandler.readConfigProperty("username"))
+		.enterPassword(PropertyHandler.readConfigProperty("password"))
+		.clickLoginBtn();
+		//.validateInventoryPageUrl();
 	}
 
 }

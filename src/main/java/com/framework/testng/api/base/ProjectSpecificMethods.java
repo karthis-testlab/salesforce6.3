@@ -8,6 +8,7 @@ import org.testng.annotations.DataProvider;
 
 import com.framework.selenium.api.base.SeleniumBase;
 import com.framework.utils.DataLibrary;
+import com.framework.utils.PropertyHandler;
 
 public class ProjectSpecificMethods extends SeleniumBase {
 
@@ -18,7 +19,8 @@ public class ProjectSpecificMethods extends SeleniumBase {
 	
 	@BeforeMethod
 	public void preCondition() {
-		startApp("chrome", false, "https://www.saucedemo.com/");
+		//startApp("chrome", false, "https://login.salesforce.com/");
+		startApp("chrome", false, PropertyHandler.readConfigProperty("url") );
 		setNode();
 	}
 	
