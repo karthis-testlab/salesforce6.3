@@ -16,9 +16,9 @@ public class LoginPage extends ProjectSpecificMethods {
 		return this;
 	}
 	
-	public InventoryPage clickLoginBtn() {
+	public LandingPage clickLoginBtn() {
 		click(locateElement(Locators.ID, PropertyHandler.readObjectProperty("LoginPage", "demosite.login.button.id")));
-		return new InventoryPage();
+		return new LandingPage();
 	}
 	
 	
