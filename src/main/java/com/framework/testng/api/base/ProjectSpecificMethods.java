@@ -29,7 +29,7 @@ public class ProjectSpecificMethods extends SeleniumBase {
 	
 	@AfterMethod
 	public void postCondition() {
-		//quit();
+		quit();
 	}	
 	
 }

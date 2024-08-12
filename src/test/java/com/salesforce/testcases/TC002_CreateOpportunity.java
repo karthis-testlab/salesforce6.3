@@ -1,5 +1,6 @@
 package com.salesforce.testcases;
 
+import org.testng.Assert;
 import org.testng.annotations.BeforeTest;
 import org.testng.annotations.Test;
 
@@ -7,12 +8,12 @@ import com.framework.selenium.api.design.Locators;
 import com.framework.testng.api.base.ProjectSpecificMethods;
 import static com.framework.utils.PropertyHandler.*;
 
-import java.text.SimpleDateFormat;
 import java.time.LocalDate;
 import java.time.format.DateTimeFormatter;
-import java.util.Date;
 
 public class TC002_CreateOpportunity extends ProjectSpecificMethods {
+	
+	private String opportunity_name = "TestLeaf - Selenium Bootcamp";
 	
 	@BeforeTest
 	public void beforeTest() {	
@@ -33,14 +34,18 @@ public class TC002_CreateOpportunity extends ProjectSpecificMethods {
 		click(Locators.XPATH, readObjectProperty("LandingPage", "salesforce.applauncher.sales.linktext.xpath"));
 		click(Locators.XPATH, "//one-app-nav-bar-item-root[@data-id='Opportunity']");
 		click(Locators.XPATH, "//div[@title='New']");
-		type(locateElement(Locators.XPATH, "//label[text()='Opportunity Name']/following-sibling::div/input"), "TestLeaf - Selenium Bootcamp");
+		type(locateElement(Locators.XPATH, "//label[text()='Opportunity Name']/following-sibling::div/input"), opportunity_name);
+		type(locateElement(Locators.XPATH, "//label[text()='Close Date']/following-sibling::div/input"), tomorrowDate());
+		executeTheScript(readConfigProperty("js.scroll.to.view"), locateElement(Locators.XPATH, "//label[text()='Stage']"));
+		click(Locators.XPATH, "//label[text()='Stage']/following-sibling::div/lightning-base-combobox");
+		click(Locators.XPATH, "//lightning-base-combobox-item[@data-value='Prospecting']");
+		click(Locators.XPATH, "//lightning-button//button[@name='SaveEdit']");
+		Assert.assertEquals(getElementText(locateElement(Locators.CSS, "span[class^='toastMessage']")), "Opportunity \""+opportunity_name+"\" was created.");
 	}
 	
-	public static void main(String[] args) {
-		
+	public static String tomorrowDate() {		
 		DateTimeFormatter formatter = DateTimeFormatter.ofPattern("dd/MM/yyyy");	
-		System.out.println(LocalDate.now().plusDays(1).format(formatter));
-		System.out.println(new SimpleDateFormat("dd/MM/yyyy").format(new Date()));
+		return LocalDate.now().plusDays(1).format(formatter);
 	}
 
 }
