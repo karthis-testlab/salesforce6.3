@@ -320,11 +320,13 @@ public class SeleniumBase extends Reporter implements Browser, Element  {
 	public void type(WebElement ele, String data) {
 		try {
 			getWait().until(ExpectedConditions.visibilityOf(ele));
-			ele.clear();
-			ele.sendKeys("", "", data);
+//			ele.clear();
+			ele.sendKeys(data);
 		} catch (ElementNotInteractableException e) {
-			reportStep("The Element " + ele + " is not Interactable \n" + e.getMessage(), "fail");
+			new Actions(getDriver()).moveToElement(ele).sendKeys(data).perform();
+//			reportStep("The Element " + ele + " is not Interactable \n" + e.getMessage(), "fail");
 		} catch (WebDriverException e) {
+System.out.println(e.getMessage());
 			reportStep("The Element " + ele + " is not Interactable \n" + e.getMessage(), "fail");
 		}
 
