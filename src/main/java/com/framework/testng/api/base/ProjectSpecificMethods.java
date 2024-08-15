@@ -22,7 +22,7 @@ public class ProjectSpecificMethods extends SeleniumBase {
 
 		startApp("chrome", false, "https://login.salesforce.com/");
 
-		startApp("chrome", false, readConfigProperty("url"));
+//		startApp("chrome", false, readConfigProperty("url"));
 
 		setNode();
 	}

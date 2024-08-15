@@ -28,6 +28,14 @@ public class LandingPage extends ProjectSpecificMethods
 
 		return this;
 	}
+	
+	public LandingPage clkSalesAccount() 
+	{
+		clearAndType(locateElement(Locators.XPATH,PropertyHandler.readObjectProperty("LandingPage","sf.landingpage.applauncher.search")), "sales");
+		click(locateElement(Locators.XPATH, PropertyHandler.readObjectProperty("LandingPage","sf.landingpage.applauncher.accountsSales")));
+
+		return this;
+	}
 
 	public OpportunityPage clkOpportunityTab() throws Exception 
 	{
@@ -42,6 +50,24 @@ public class LandingPage extends ProjectSpecificMethods
 	{
 		click(locateElement(Locators.XPATH, PropertyHandler.readObjectProperty("LandingPage", "sf.landingpage.toggle.button")));
 		return new LegalEntityPage();
+	}
+	
+	public HomePage clkSales() 
+	{
+		executeTheScript("arguments[0].scrollIntoView(true);", locateElement(Locators.XPATH, PropertyHandler.readObjectProperty("LandingPage","sf.landingpage.applauncher.sales")));
+		click(locateElement(Locators.XPATH, PropertyHandler.readObjectProperty("LandingPage","sf.landingpage.applauncher.sales")));
+	
+		return new HomePage();
+		
+	}
+	
+	public AccountsPage clkAccounts() 
+	{
+//		executeTheScript("arguments[0].scrollIntoView(true);", locateElement(Locators.XPATH, PropertyHandler.readObjectProperty("LandingPage","sf.landingpage.applauncher.sales")));
+//		click(locateElement(Locators.XPATH, PropertyHandler.readObjectProperty("LandingPage","sf.landingpage.clkAccount.btn")));
+	executeTheScript("arguments[0].click();", locateElement(Locators.XPATH, PropertyHandler.readObjectProperty("LandingPage","sf.landingpage.clkAccount.btn")));
+		return new AccountsPage();
+		
 	}
 
 }
