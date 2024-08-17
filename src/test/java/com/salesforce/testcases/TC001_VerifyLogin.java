@@ -18,12 +18,12 @@ public class TC001_VerifyLogin extends ProjectSpecificMethods {
 	
 	@Test
 	public void runLogin() {
-//		new LoginPage()
-//		.enterUsername("standard_user")
-//		.enterPassword("secret_sauce")
-//		.clickLoginBtn()
-//		.validateInventoryPageUrl();
-		
+	
 		new LoginPage().enterUserName().enterPassword().clickLoginButtonAndLoginIsSuccess();
 
-}}
+}
+	
+
+
+
+}

@@ -9,21 +9,38 @@ import com.framework.utils.WaitUtils;
 
 public class HomePage extends ProjectSpecificMethods {
 
-	WebElement btnToggle = locateElement(Locators.XPATH, PropertyHandler.readObjectProperty("HomePage", "toggle.button"));
-	WebElement btnViewAll = locateElement(Locators.XPATH, PropertyHandler.readObjectProperty("HomePage", "viewAll.button"));
-	WebElement btnServiceConsole = locateElement(Locators.XPATH, PropertyHandler.readObjectProperty("HomePage", "serviceconsole.button"));
+	WebElement btnToggle = locateElement(Locators.XPATH,
+			PropertyHandler.readObjectProperty("HomePage", "toggle.button"));
+	WebElement btnViewAll = locateElement(Locators.XPATH,
+			PropertyHandler.readObjectProperty("HomePage", "viewAll.button"));
+	WebElement btnServiceConsole = locateElement(Locators.XPATH,
+			PropertyHandler.readObjectProperty("HomePage", "serviceconsole.button"));
 	WebElement btnSales = locateElement(Locators.XPATH, PropertyHandler.readObjectProperty("HomePage", "sales.button"));
 
-
-	
 	public HomePage clickToggle() {
 		new WaitUtils().waitForElementToBeVisible(btnToggle);
 		click(btnToggle);
 		return this;
 	}
-	
+
 	public HomePage verifyandclickViewAll() {
 		clickUsingJs(btnViewAll);
 		return this;
+	}
+
+	// 4. Click Option from App Launcher
+	public DashboardPage AppLaucherOption(String AppLauncherOption) {
+		checkWindowHandles();
+
+		switch (AppLauncherOption.toLowerCase()) {
+		case "sales":
+			clickUsingActions(btnSales);
+			break;
+		case "service console":
+			clickUsingActions(btnServiceConsole);
+			break;
+		}
+		return new DashboardPage();
+
 	}
 }
