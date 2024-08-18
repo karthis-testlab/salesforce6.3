@@ -18,13 +18,14 @@ public class ProjectSpecificMethods extends SeleniumBase {
 	
 	@BeforeMethod
 	public void preCondition() {
-		startApp("chrome", false, "https://www.saucedemo.com/");
+		startApp("chrome", false, "https://login.salesforce.com");
 		setNode();
 	}
 	
 	@AfterMethod
 	public void postCondition() {
-		close();
+		//close();
+		quit();
 	}	
 	
 }
