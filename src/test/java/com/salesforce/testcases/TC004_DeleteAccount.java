@@ -6,26 +6,32 @@ import com.framework.testng.api.base.ProjectSpecificMethods;
 import com.framework.utils.PropertyHandler;
 import com.salesforce.pages.LoginPage;
 
-public class TC003_CreateNewOpportunity extends ProjectSpecificMethods{
+public class TC004_DeleteAccount extends ProjectSpecificMethods {	
 	
 	@BeforeTest
 	public void beforeTest() {	
-		testcaseName = "CreateNewOpportunity";
-		testDescription = "Verify creating new Opportunity functionality";
+		testcaseName = "Delete an account";
+		testDescription = "Verify delete account functionality";
 		authors = "Thiagarajan";
 		category = "Smoke";
 		excelFileName = "";
 	}
 	
 	@Test
-	public void createNewOpportunity() throws InterruptedException {
+	public void deleteAnAccount() {
 		new LoginPage()
 		.enterUsername(PropertyHandler.readConfigProperty("username"))
 		.enterPassword(PropertyHandler.readConfigProperty("password"))
 		.clickLoginBtn()
 		.clickAppLauncher()
-		.typeSearchKeyword("opportunities")
-		.clickOpportunitiesSearchResult();				
+		.typeSearchKeyword("accounts")
+		.clickAccountsSearchResult()
+		.clickDeleteDropdownButton()
+		.clickDeleteButton()
+		.clickDeleteButton2()
+		.readToastMessage()
+		.clickProfileIcon()
+		.clickLogoutButton();				
 	}
 
 }

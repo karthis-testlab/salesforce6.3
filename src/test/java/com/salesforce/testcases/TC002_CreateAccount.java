@@ -5,7 +5,7 @@ import org.testng.annotations.Test;
 
 import com.framework.testng.api.base.ProjectSpecificMethods;
 import com.framework.utils.PropertyHandler;
-import com.salesforce.pages.AccountsLoginPage;
+import com.salesforce.pages.LoginPage;
 
 public class TC002_CreateAccount extends ProjectSpecificMethods {	
 	
@@ -20,13 +20,13 @@ public class TC002_CreateAccount extends ProjectSpecificMethods {
 	
 	@Test
 	public void createNewAccount() {
-		new AccountsLoginPage()
+		new LoginPage()
 		.enterUsername(PropertyHandler.readConfigProperty("username"))
 		.enterPassword(PropertyHandler.readConfigProperty("password"))
 		.clickLoginBtn()
 		.clickAppLauncher()
 		.typeSearchKeyword("accounts")
-		.clickSearchResult()
+		.clickAccountsSearchResult()
 		.clickNewButton()
 		.enterAccountName("New account")
 		.clickOwnershipDropdown()

@@ -6,6 +6,8 @@ import com.framework.utils.PropertyHandler;
 
 public class AccountsMainPage extends ProjectSpecificMethods {
 	
+//	CREATE ACCOUNT METHODS
+	
 	public AccountsMainPage clickNewButton() {
 		click(locateElement(Locators.XPATH, PropertyHandler.readObjectProperty("AccountsMainPage", "sf.amp.new.button")));
 		return this;
@@ -31,6 +33,27 @@ public class AccountsMainPage extends ProjectSpecificMethods {
 		return new AccountsVerificationPage();
 	}	
 	
+//	DELETE METHODS START HERE
+	
+	public AccountsMainPage clickDeleteDropdownButton() {
+		click(locateElement(Locators.XPATH, PropertyHandler.readObjectProperty("AccountsMainPage", "sf.amp.delete.dropdown.button")));
+		return this;
+	}
+	
+	public AccountsMainPage clickDeleteButton() {
+		click(locateElement(Locators.XPATH, PropertyHandler.readObjectProperty("AccountsMainPage", "sf.amp.delete.button")));
+		return this;
+	}
+	
+	public AccountsVerificationPage clickDeleteButton2() {
+		click(locateElement(Locators.XPATH, PropertyHandler.readObjectProperty("AccountsMainPage", "sf.amp.delete.button2")));
+		return new AccountsVerificationPage();
+	}
+	
+	public AccountsMainPage clickAccountSortArrow() {
+		click(Locators.XPATH, PropertyHandler.readObjectProperty("AccountsMainPage", "sf.amp.account.sort.arrow"));
+		return this;
+	}
 
 }
 	

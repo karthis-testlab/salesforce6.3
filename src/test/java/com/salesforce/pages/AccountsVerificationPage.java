@@ -16,9 +16,9 @@ public class AccountsVerificationPage extends ProjectSpecificMethods {
 		return this;
 	}
 	
-	public AccountsLoginPage clickLogoutButton() {
+	public LoginPage clickLogoutButton() {
 		click(locateElement(Locators.XPATH, PropertyHandler.readObjectProperty("AccountsVerificationPage", "sf.avp.logout.button")));
-		return new AccountsLoginPage();
+		return new LoginPage();
 	}
 	
 	
