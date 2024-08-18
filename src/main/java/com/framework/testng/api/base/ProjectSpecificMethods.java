@@ -26,7 +26,7 @@ public class ProjectSpecificMethods extends SeleniumBase {
 	
 	@AfterMethod
 	public void postCondition() {
-		close();
+		quit();
 	}	
 	
 }
