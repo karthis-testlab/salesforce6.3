@@ -7,19 +7,18 @@ import com.framework.utils.PropertyHandler;
 public class LoginPage extends ProjectSpecificMethods {
 	
 	public LoginPage enterUsername(String username) {		
-		type(locateElement(Locators.ID,PropertyHandler.readObjectProperty("LoginPage", "demosite.username.textbox.id")), username);
+		type(locateElement(Locators.ID,PropertyHandler.readObjectProperty("LoginPage", "sf.alp.username.field")), username);
 		return this;
 	}
 	
 	public LoginPage enterPassword(String password) {
-		type(locateElement(Locators.ID, PropertyHandler.readObjectProperty("LoginPage", "demosite.password.textbox.id")), password);
+		type(locateElement(Locators.ID, PropertyHandler.readObjectProperty("LoginPage", "sf.alp.password.field")), password);
 		return this;
 	}
 	
-	public InventoryPage clickLoginBtn() {
-		click(locateElement(Locators.ID, PropertyHandler.readObjectProperty("LoginPage", "demosite.login.button.id")));
-		return new InventoryPage();
+	public LandingPage clickLoginBtn() {
+		click(locateElement(Locators.ID, PropertyHandler.readObjectProperty("LoginPage", "sf.alp.login.button")));
+		return new LandingPage();
 	}
-	
 	
 }
